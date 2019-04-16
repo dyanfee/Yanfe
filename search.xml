@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[matplotlib学习笔记]]></title>
     <url>%2F2019%2F04%2F15%2Fmatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[matplotlib简单使用导入1234567891011121314import matplotlib.pyplot as pltplt.plot() #绘制图表plt.show() #显示plt.xticks(rotation=45) #对x轴的值旋转45度 plt.xlabel(name) #对x轴加标签plt.ylabel(name) #对y轴加标签plt.title(name) #表名plt.add_subplot(4,3,x) #创建多个图表 x指定图表的位置 4行3列plt.figure(figsize=(width,height)) #改表图表的宽高plt.legend(loc) #绘制说明 绘制图表1234567891011121314151617181920212223242526272829import matplotlib.pyplot as pltimport pandas as pdfrom numpy import arange# data = pd.DataFrame(&#123;'Name':[4,4.5,4.3,3,3.7]&#125;)# 模拟数据data = pd.DataFrame(&#123;'First':[3],'Second':[4.5],'Third':[3.4],'Fourth':[4.4],'Fifth':[4.3]&#125;)# 列名num_cols = ['First','Second','Third','Fourth','Fifth']print(data)bar_heights = data.ix[0,num_cols].valuesprint(bar_heights)bar_positions = arange(5) + 0.5 print(bar_positions)fig,ax = plt.subplots()# 设置X的位置和y值高度 和列宽度ax.bar(bar_positions,bar_heights,0.4)# ax.bar(bar_positions,bar_heights,0.4) #绘制横向的图# ax.scatter(series,series) #绘制散点图plt.show()# 输出 Fifth First Fourth Second Third0 4.3 3 4.4 4.5 3.4[3. 4.5 3.4 4.4 4.3][0.5 1.5 2.5 3.5 4.5]]]></content>
+    <content type="text"><![CDATA[matplotlib简单使用导入12345678910111213141516import matplotlib.pyplot as pltplt.plot() #绘制图表plt.show() #显示plt.xticks(rotation=45) #对x轴的值旋转45度 plt.xlabel(name) #对x轴加标签plt.ylabel(name) #对y轴加标签plt.title(name) #表名plt.add_subplot(4,3,x) #创建多个图表 x指定图表的位置 4行3列plt.figure(figsize=(width,height)) #改表图表的宽高plt.legend(loc) #绘制说明plt.tick_params(bottom,top,left,right='off') #设置图像显示刻度 绘制柱状图1234567891011121314151617181920212223242526272829import matplotlib.pyplot as pltimport pandas as pdfrom numpy import arange# data = pd.DataFrame(&#123;'Name':[4,4.5,4.3,3,3.7]&#125;)# 模拟数据data = pd.DataFrame(&#123;'First':[3],'Second':[4.5],'Third':[3.4],'Fourth':[4.4],'Fifth':[4.3]&#125;)# 列名num_cols = ['First','Second','Third','Fourth','Fifth']print(data)bar_heights = data.ix[0,num_cols].valuesprint(bar_heights)bar_positions = arange(5) + 0.5 print(bar_positions)fig,ax = plt.subplots()# 设置X的位置和y值高度 和列宽度ax.bar(bar_positions,bar_heights,0.4)# ax.barh(bar_positions,bar_heights,0.4) #绘制横向的图# ax.scatter(series,series) #绘制散点图plt.show()# 输出 Fifth First Fourth Second Third0 4.3 3 4.4 4.5 3.4[3. 4.5 3.4 4.4 4.3][0.5 1.5 2.5 3.5 4.5] 结果 散点图12345678910111213141516import matplotlib.pyplot as pltimport numpy as np# 模拟数据n = 500# 随机均值为0 方差2 的数据s1 = np.random.normal(0, 2, n)s2 = np.random.normal(3, 5, n)print(type(s1))fig, ax = plt.subplots()ax.scatter(s1, s2) # 绘制散点图plt.xlabel('s1')plt.ylabel('s2')plt.title('Scatter plot')plt.show() 结果 绘制频率柱状图123456789101112131415161718192021import matplotlib.pyplot as pltimport numpy as npimport pandas as pd# 模拟数据n = 1000# 随机均值为0 方差2 的数据s1 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)data = pd.DataFrame()data['fir'] = s1# print(data)print(data['fir'].value_counts().sort_index())fig, ax = plt.subplots()ax.hist(data["fir"]) # 自动分跨度 频率柱状图# ax, ylim(0, 10)# 设置y的取值区间# ax.hist(data['fir'], bins=20) # 分为20个跨度# ax.hist(data['fir'], range(4, 5), bins=20) #取4到5之间的值分为20个跨度plt.xlabel('Values')plt.ylabel('Times')plt.title('Plot')plt.show() 结果 盒图12345678910111213141516171819202122import matplotlib.pyplot as pltimport numpy as npimport pandas as pd# 模拟数据n = 100# 随机均值为0 方差2 的数据s1 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s2 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s3 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)data = pd.DataFrame()data['fir'] = s1data['sec'] = s2data['thi'] = s3num_cols = ["fir", "sec", "thi"]# print(data)fig, ax = plt.subplots()ax.boxplot(data[num_cols].values)ax.set_xticklabels(num_cols) # x轴的名称# ax.set_ylim(0, 10) # 设置y的取值区间plt.xlabel('Values')plt.title('Plot')plt.show() 结果 折线图12345678910111213141516171819202122232425262728import matplotlib.pyplot as pltimport numpy as npimport pandas as pd# 模拟数据n = 10# 随机均值为0 方差2 的数据s1 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s2 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s3 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)data = pd.DataFrame()data['fir'] = s1data['sec'] = s2data['thi'] = s3num_cols = ["fir", "sec", "thi"]# print(data)# fig=plt.figure(figsize=(3,3))# ax = fig.add_subplot(1,1,1)fig, ax = plt.subplots()# c 指定颜色 linewidth指定线条宽度ax.plot(data["fir"], label='First', c=(0/255, 0/255, 0/255), linewidth=3)ax.plot(data['sec'], label='Sceond')ax.plot(data['thi'], label='Third')plt.xlabel('Values')plt.title('Plot')ax.legend(loc='upper right')plt.show() 结果]]></content>
       <categories>
         <category>Python</category>
       </categories>
@@ -32,8 +32,8 @@
         <category>Python</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>numpy</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -44,9 +44,9 @@
         <category>picture</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>picture</tag>
         <tag>test</tag>
-        <tag>Python</tag>
         <tag>nodejs</tag>
         <tag>Typescript</tag>
       </tags>
