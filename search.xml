@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[seaborn学习笔记]]></title>
+    <url>%2F2019%2F04%2F17%2Fseaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[seaborn简单使用导入123456789101112131415import seaborn as sns# 默认风格sns.set()# 五种风格 darkgrid whitegrid dark white tickssns.set_style('darkgrid')# offset 到轴线的距离 left 去掉左边的轴 right top bottomsns.despine(offset = 10,left = True) # 去掉某些轴# paper talk poster notebook 绘制内容风格sns.set_context("paper"，font_scale,rc=&#123;"lines.linewidth":2.5&#125;)# bins 直方图的个数sns.distplot(data,bins,kds=False) #画图sns.jointplot(x,y,data) # 绘制散点图和单变量直方图 颜色1234567891011121314151617181920212223# 调色板 deep muted pastel bright dark colorblindcolor_palette()set_palette()# 调色板输出8种颜色 均分sns.palplot(sns.color_palette('hls',8))# 调整亮度和饱和度 l=lightness s饱和度 saturationsns.palplot(sns.hls_palette(8,l=3,s=9))# 深浅 sns.palplot(sns.color_paltte("Paired"),8)# xkcd 指定固定颜色# sns.xkcd_rgb['pale red']# 连续颜色 产生由浅到深的颜色 渐变翻转加_r 如BuGn_r n指定产生几种颜色 ‘cubehelix’线性变换sns.palplot(sns.color_palette("Blues",n))# n产生几种颜色 start开始颜色 rot变换度sns.paplot(sns.cubehelix_palette(n,start,rot))# 指定颜色渐变 由浅到深 dark_palette() 由深到浅 reverse 翻转sns.palplot(sns.light_palette('green',reverse)) 使用1234567891011121314151617181920import seaborn as snsimport numpy as npimport matplotlib.pyplot as pltdef sinplot(flip=1): # 0到14之间取100个点 x = np.linspace(0, 14, 100) style = ['darkgrid', 'whitegrid', 'dark', 'white', 'ticks'] for j in range(5): plt.subplot(3, 2, j+1) for i in range(1, 7): plt.plot(x, np.sin(x+i*.5)*(7-i)*flip) sns.set_style(style[j]) plt.title = style[j]sinplot()plt.show() 散点图12345678910111213141516import seaborn as snsimport numpy as npimport matplotlib.pyplot as pltimport pandas as pdmean, cov = [0, 1], [(1, 0.5), (.5, 1)]# 生成200个数据 两组data = np.random.multivariate_normal(mean, cov, 200)data = pd.DataFrame(data, columns=["x", "y"])print(data)sns.jointplot(x="x", y="y", data=data)# kind 指定点的样式 hex六边形# sns.jointplot(x="x", y="y",kind="hex", data=data)plt.show() 回归1234567# 回归分析regplot()lmplot()# regplot画回归 x_jitter抖动sns.regplot(x,y,data,x_jitter) 123456789101112131415161718import seaborn as snsimport numpy as npimport matplotlib.pyplot as pltimport pandas as pd# 自带数据集# iris = sns.load_dataset("tips")# iris.head()mean, cov = [0, 1], [(1, 0.5), (.5, 1)]# 生成200个数据 两组data = np.random.multivariate_normal(mean, cov, 200)data = pd.DataFrame(data, columns=["x", "y"])print(data)sns.regplot(x="x", y="y", data = data)plt.show()]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[matplotlib学习笔记]]></title>
     <url>%2F2019%2F04%2F15%2Fmatplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[matplotlib简单使用导入12345678910111213141516import matplotlib.pyplot as pltplt.plot() #绘制图表plt.show() #显示plt.xticks(rotation=45) #对x轴的值旋转45度 plt.xlabel(name) #对x轴加标签plt.ylabel(name) #对y轴加标签plt.title(name) #表名plt.add_subplot(4,3,x) #创建多个图表 x指定图表的位置 4行3列plt.figure(figsize=(width,height)) #改表图表的宽高plt.legend(loc) #绘制说明plt.tick_params(bottom,top,left,right='off') #设置图像显示刻度 绘制柱状图1234567891011121314151617181920212223242526272829import matplotlib.pyplot as pltimport pandas as pdfrom numpy import arange# data = pd.DataFrame(&#123;'Name':[4,4.5,4.3,3,3.7]&#125;)# 模拟数据data = pd.DataFrame(&#123;'First':[3],'Second':[4.5],'Third':[3.4],'Fourth':[4.4],'Fifth':[4.3]&#125;)# 列名num_cols = ['First','Second','Third','Fourth','Fifth']print(data)bar_heights = data.ix[0,num_cols].valuesprint(bar_heights)bar_positions = arange(5) + 0.5 print(bar_positions)fig,ax = plt.subplots()# 设置X的位置和y值高度 和列宽度ax.bar(bar_positions,bar_heights,0.4)# ax.barh(bar_positions,bar_heights,0.4) #绘制横向的图# ax.scatter(series,series) #绘制散点图plt.show()# 输出 Fifth First Fourth Second Third0 4.3 3 4.4 4.5 3.4[3. 4.5 3.4 4.4 4.3][0.5 1.5 2.5 3.5 4.5] 结果 散点图12345678910111213141516import matplotlib.pyplot as pltimport numpy as np# 模拟数据n = 500# 随机均值为0 方差2 的数据s1 = np.random.normal(0, 2, n)s2 = np.random.normal(3, 5, n)print(type(s1))fig, ax = plt.subplots()ax.scatter(s1, s2) # 绘制散点图plt.xlabel('s1')plt.ylabel('s2')plt.title('Scatter plot')plt.show() 结果 绘制频率柱状图123456789101112131415161718192021import matplotlib.pyplot as pltimport numpy as npimport pandas as pd# 模拟数据n = 1000# 随机均值为0 方差2 的数据s1 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)data = pd.DataFrame()data['fir'] = s1# print(data)print(data['fir'].value_counts().sort_index())fig, ax = plt.subplots()ax.hist(data["fir"]) # 自动分跨度 频率柱状图# ax, ylim(0, 10)# 设置y的取值区间# ax.hist(data['fir'], bins=20) # 分为20个跨度# ax.hist(data['fir'], range(4, 5), bins=20) #取4到5之间的值分为20个跨度plt.xlabel('Values')plt.ylabel('Times')plt.title('Plot')plt.show() 结果 盒图12345678910111213141516171819202122import matplotlib.pyplot as pltimport numpy as npimport pandas as pd# 模拟数据n = 100# 随机均值为0 方差2 的数据s1 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s2 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s3 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)data = pd.DataFrame()data['fir'] = s1data['sec'] = s2data['thi'] = s3num_cols = ["fir", "sec", "thi"]# print(data)fig, ax = plt.subplots()ax.boxplot(data[num_cols].values)ax.set_xticklabels(num_cols) # x轴的名称# ax.set_ylim(0, 10) # 设置y的取值区间plt.xlabel('Values')plt.title('Plot')plt.show() 结果 折线图12345678910111213141516171819202122232425262728import matplotlib.pyplot as pltimport numpy as npimport pandas as pd# 模拟数据n = 10# 随机均值为0 方差2 的数据s1 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s2 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)s3 = np.round(np.abs(np.random.normal(10, 3, n)), decimals=1)data = pd.DataFrame()data['fir'] = s1data['sec'] = s2data['thi'] = s3num_cols = ["fir", "sec", "thi"]# print(data)# fig=plt.figure(figsize=(3,3))# ax = fig.add_subplot(1,1,1)fig, ax = plt.subplots()# c 指定颜色 linewidth指定线条宽度ax.plot(data["fir"], label='First', c=(0/255, 0/255, 0/255), linewidth=3)ax.plot(data['sec'], label='Sceond')ax.plot(data['thi'], label='Third')plt.xlabel('Values')plt.title('Plot')ax.legend(loc='upper right')plt.show() 结果]]></content>
@@ -32,8 +37,8 @@
         <category>Python</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>numpy</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -44,9 +49,9 @@
         <category>picture</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>picture</tag>
         <tag>test</tag>
-        <tag>Python</tag>
         <tag>nodejs</tag>
         <tag>Typescript</tag>
       </tags>
