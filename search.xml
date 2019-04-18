@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[雨很大]]></title>
+    <url>%2F2019%2F04%2F19%2F%E9%9B%A8%E5%BE%88%E5%A4%A7%2F</url>
+    <content type="text"><![CDATA[​ 今夜雨很大，晚安。]]></content>
+      <tags>
+        <tag>night</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[seaborn学习笔记]]></title>
     <url>%2F2019%2F04%2F17%2Fseaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[seaborn简单使用导入123456789101112131415import seaborn as sns# 默认风格sns.set()# 五种风格 darkgrid whitegrid dark white tickssns.set_style('darkgrid')# offset 到轴线的距离 left 去掉左边的轴 right top bottomsns.despine(offset = 10,left = True) # 去掉某些轴# paper talk poster notebook 绘制内容风格sns.set_context("paper"，font_scale,rc=&#123;"lines.linewidth":2.5&#125;)# bins 直方图的个数sns.distplot(data,bins,kds=False) #画图sns.jointplot(x,y,data) # 绘制散点图和单变量直方图 颜色1234567891011121314151617181920212223# 调色板 deep muted pastel bright dark colorblindcolor_palette()set_palette()# 调色板输出8种颜色 均分sns.palplot(sns.color_palette('hls',8))# 调整亮度和饱和度 l=lightness s饱和度 saturationsns.palplot(sns.hls_palette(8,l=3,s=9))# 深浅 sns.palplot(sns.color_paltte("Paired"),8)# xkcd 指定固定颜色# sns.xkcd_rgb['pale red']# 连续颜色 产生由浅到深的颜色 渐变翻转加_r 如BuGn_r n指定产生几种颜色 ‘cubehelix’线性变换sns.palplot(sns.color_palette("Blues",n))# n产生几种颜色 start开始颜色 rot变换度sns.paplot(sns.cubehelix_palette(n,start,rot))# 指定颜色渐变 由浅到深 dark_palette() 由深到浅 reverse 翻转sns.palplot(sns.light_palette('green',reverse)) 使用1234567891011121314151617181920import seaborn as snsimport numpy as npimport matplotlib.pyplot as pltdef sinplot(flip=1): # 0到14之间取100个点 x = np.linspace(0, 14, 100) style = ['darkgrid', 'whitegrid', 'dark', 'white', 'ticks'] for j in range(5): plt.subplot(3, 2, j+1) for i in range(1, 7): plt.plot(x, np.sin(x+i*.5)*(7-i)*flip) sns.set_style(style[j]) plt.title = style[j]sinplot()plt.show() 散点图12345678910111213141516import seaborn as snsimport numpy as npimport matplotlib.pyplot as pltimport pandas as pdmean, cov = [0, 1], [(1, 0.5), (.5, 1)]# 生成200个数据 两组data = np.random.multivariate_normal(mean, cov, 200)data = pd.DataFrame(data, columns=["x", "y"])print(data)sns.jointplot(x="x", y="y", data=data)# kind 指定点的样式 hex六边形# sns.jointplot(x="x", y="y",kind="hex", data=data)plt.show() 回归1234567# 回归分析regplot()lmplot()# regplot画回归 x_jitter抖动sns.regplot(x,y,data,x_jitter) 123456789101112131415161718import seaborn as snsimport numpy as npimport matplotlib.pyplot as pltimport pandas as pd# 自带数据集# iris = sns.load_dataset("tips")# iris.head()mean, cov = [0, 1], [(1, 0.5), (.5, 1)]# 生成200个数据 两组data = np.random.multivariate_normal(mean, cov, 200)data = pd.DataFrame(data, columns=["x", "y"])print(data)sns.regplot(x="x", y="y", data = data)plt.show()]]></content>
